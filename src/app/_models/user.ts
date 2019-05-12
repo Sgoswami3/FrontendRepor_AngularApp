@@ -8,11 +8,11 @@ export interface User {
   gender: string;
   created: Date;
   lastActive: Date; //notcoming
-  photoUrl: string; //not coming
+  photourl: string; //not coming
   city: string;
   country: string;
   interest?: string; //not coming
   introduction?: string;
-  lookingFor?: string; // not coming
+  lookingfor?: string; // not coming
   photos?: Photo[]; // not coming/
 }

@@ -12,11 +12,19 @@ import { RegisterComponent } from "./register/register.component";
 import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { AlertifyService } from "./_services/alertify.service";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { MemberlistComponent } from "./memberlist/memberlist.component";
+import { MemberlistComponent } from "./members/memberlist/memberlist.component";
 import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { UserService } from "./_services/user.service";
+import { MemberCardComponent } from "./members/member-card/member-card.component";
+import { JwtModule } from "@auth0/angular-jwt";
+import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
+import { TabsModule } from "ngx-bootstrap/";
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -26,14 +34,24 @@ import { UserService } from "./_services/user.service";
     RegisterComponent,
     MemberlistComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberCardComponent,
+    MemberDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:5000"],
+        blacklistedRoutes: ["localhost:500/api/auth"]
+      }
+    }),
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [
     AuthService,
