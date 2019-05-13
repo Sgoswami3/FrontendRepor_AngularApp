@@ -21,6 +21,11 @@ import { MemberCardComponent } from "./members/member-card/member-card.component
 import { JwtModule } from "@auth0/angular-jwt";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
 import { TabsModule } from "ngx-bootstrap/";
+import { NgxGalleryModule } from "ngx-gallery";
+import {
+  MemberDetailResolver,
+  MemberListResolver
+} from "./_resolvers/member-details.resolver";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -43,6 +48,7 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxGalleryModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -58,7 +64,9 @@ export function tokenGetter() {
     ErrorInterceptorProvider,
     AlertifyService,
     AuthGuard,
-    UserService
+    UserService,
+    MemberDetailResolver,
+    MemberListResolver
   ],
   bootstrap: [AppComponent]
 })

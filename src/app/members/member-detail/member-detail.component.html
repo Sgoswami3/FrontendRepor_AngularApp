@@ -1,28 +1,31 @@
 <div class="container mt-4">
   <div class="row">
+    <h1>{{ usre.knownas }}'s Profile</h1>
+  </div>
+  <div class="row">
     <div class="col-sm-4">
       <div class="card">
         <img
           class="card-img-top img-thumbnail"
-          src="{{ usre?.photourl }}"
-          alt="{{ usre?.knownas }}"
+          src="{{ usre.photourl }}"
+          alt="{{ usre.knownas }}"
         />
         <div class="card-body">
           <div>
             <strong>Location:</strong>
-            <p>{{ usre?.city }}, {{ usre?.country }}</p>
+            <p>{{ usre.city }}, {{ usre.country }}</p>
           </div>
           <div>
             <strong>Age:</strong>
-            <p>{{ usre?.age }}</p>
+            <p>{{ usre.age }}</p>
           </div>
           <div>
             <strong>Last Active: </strong>
-            <p>{{ usre?.lastActive }}</p>
+            <p>{{ usre.lastActive }}</p>
           </div>
           <div>
             <strong>Member Since:</strong>
-            <p>{{ usre?.created }}</p>
+            <p>{{ usre.created }}</p>
           </div>
         </div>
         <div class="card-footer">
@@ -43,19 +46,22 @@
         <tabset class="member-tabset">
           <tab heading="About {{ usre?.knownas }}">
             <h4>Description</h4>
-            <p>{{ usre?.introduction }}</p>
+            <p>{{ usre.introduction }}</p>
             <h4>Looking For</h4>
-            <p>{{ usre?.lookingfor }}</p>
+            <p>{{ usre.lookingfor }}</p>
           </tab>
 
           <tab heading="Interests">
             <h4>Interest</h4>
-            <p>{{ usre?.interest }}</p>
+            <p>{{ usre.interest }}</p>
           </tab>
 
           <tab heading="Photos">
             <h4>Photos</h4>
-            <p>photos will go here</p>
+            <ngx-gallery
+              [options]="galleryOptions"
+              [images]="galleryImages"
+            ></ngx-gallery>
           </tab>
 
           <tab heading="messages">
