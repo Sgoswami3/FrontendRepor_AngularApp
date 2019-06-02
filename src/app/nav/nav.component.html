@@ -20,6 +20,9 @@
     </ul>
 
     <div class="dropdown" *ngIf="loggedIn()" dropdown>
+      <span class="mr-1">
+        <img src="{{authservice.currentuser.photourl}}" alt="">
+      </span>
       <a class="dropdown-toggle text-light" dropdownToggle (click)="(false)">
         Welcome {{ authservice.decodedToken?.unique_name | titlecase }}
       </a>

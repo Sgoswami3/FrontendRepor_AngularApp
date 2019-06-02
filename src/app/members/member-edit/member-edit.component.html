@@ -108,7 +108,7 @@
           </tab>
 
           <tab heading="Edit Photos">
-            <p>Photo edit will go here</p>
+            <app-photoeditor [photos]="user.photos" (getMemmberPhotoChnage)="updateMainPhoto($event)"></app-photoeditor>
           </tab>
         </tabset>
       </div>
