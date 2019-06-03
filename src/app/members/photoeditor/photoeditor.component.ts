@@ -76,9 +76,21 @@ setMainPhoto(photo:  Photo) {
     this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
     this.currentMainPhoto.isMain = false;
     photo.isMain = true;
-    this.getMemmberPhotoChnage.emit(photo.url);
+    this.authservice.changeMemberPhoto(photo.url);
+    this.authservice.currentuser.photourl = photo.url;
+    localStorage.setItem("user", JSON.stringify(this.authservice.currentuser));
+    // this.getMemmberPhotoChnage.emit(photo.url);
   }, err => this.alertify.error(err));
 
+}
+
+deletePhoto(photoId: number) {
+  this.alertify.confirm("Are you sure you want to delete this photo", () => {
+    this.userservice.deletePhoto(this.authservice.decodedToken.nameid, photoId).subscribe(() => {
+      this.photos.splice(this.photos.findIndex(p => p.id === photoId), 1);
+      this.alertify.success("Photo has been deleted");
+    }, err => this.alertify.error("failed to delete photos"));
+  })
 }
 
 
